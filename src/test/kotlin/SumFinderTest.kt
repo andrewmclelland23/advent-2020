@@ -1,25 +1,32 @@
-import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.FreeSpec
+import io.kotest.data.forAll
+import io.kotest.data.row
 import io.kotest.matchers.collections.shouldContainExactlyInAnyOrder
 import io.kotest.matchers.shouldBe
 
-class SumFinderTest: FreeSpec() {
+class SumFinderTest : FreeSpec() {
     init {
-        "SumFinder 'finder' method should" - {
-            "Find the two entries that sum to a given number" {
-                val entries = listOf(979, 366, 299, 675, 1456, 1721)
-                val targetNumber = 2020
-                val expectedResult = listOf(1721, 299)
+        "SumFinder" - {
+            "findRecursively should" - {
+                "Find a the n number of entries that sum up to the given input" {
+                    forAll(
+                        row(listOf(979, 366, 299, 675, 1456, 1721), 2020, 2, listOf(1721, 299)),
+                        row(listOf(300, 4, 302, 2, 306, 3, 307, 1, 308), 10, 4, listOf(2, 1, 3, 4))
+                    ) { entries, targetNumber, numberOfMultiples, expectedResult ->
 
-                SumFinder().find(targetNumber, entries) shouldContainExactlyInAnyOrder expectedResult
-            }
-            "Throw exception when answer is not possible" {
-                val entries = listOf(2, 2)
-                val targetNumber = 5
-                val exception = shouldThrow<IllegalArgumentException> {
-                    SumFinder().find(targetNumber, entries)
+                        SumFinder().find(
+                            targetNumber,
+                            entries,
+                            numberOfMultiples
+                        ) shouldContainExactlyInAnyOrder expectedResult
+
+                    }
                 }
-                exception.message shouldBe "ERROR: No 2 of the given entries add up to the target number"
+                "Return empty list when answer is not possible" {
+                    val entries = listOf(2, 2)
+                    val targetNumber = 5
+                    SumFinder().find(targetNumber, entries, 2) shouldBe listOf()
+                }
             }
         }
     }

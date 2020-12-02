@@ -13,8 +13,15 @@ class DayOneFeatureTest: FreeSpec() {
                 val expenseReport = ExpenseReport(input, SumFinder())
                 val expectedResult = 1018944
 
-                expenseReport.fixReport(2020) shouldBe expectedResult
+                expenseReport.fixReport(2020, 2) shouldBe expectedResult
             }
+        }
+        "Find the three entries that sum to 2020 and then multiply those three numbers together" {
+            val input = javaClass.getResource("/input/DayOneFeatureTest").readText()
+            val expenseReport = ExpenseReport(input, SumFinder())
+            val expectedResult = 8446464
+
+            expenseReport.fixReport(2020, 3) shouldBe expectedResult
         }
     }
 }

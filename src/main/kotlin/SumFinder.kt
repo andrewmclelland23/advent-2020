@@ -1,15 +1,25 @@
 class SumFinder {
 
-    fun find(targetNumber: Int, entries: List<Int>): List<Int> {
+    fun find(targetNumber: Int, entries: List<Int>, depth: Int): List<Int> {
+        val result: MutableList<Int> = mutableListOf()
         entries.forEachIndexed { i, entry ->
             val potentialMatches = entries.toMutableList().also { it.removeAt(i) }
-            val requiredNumber = targetNumber - entry
-            val result = potentialMatches.find { it == requiredNumber }
-            if(result != null) {
-                println("SumFinder Result: $entry + $result = $targetNumber")
-                return listOf(entry, result)
+            val newTarget = targetNumber - entry
+            if (depth > 2) {
+                find(newTarget, potentialMatches, depth - 1).also {
+                    if (it.isNotEmpty()) {
+                        return it.toMutableList() + entry
+                    }
+                }
+            } else {
+                potentialMatches.find { it == newTarget }.also {
+                    if (it != null) {
+                        result.addAll(listOf(it, entry))
+                        return result
+                    }
+                }
             }
         }
-        throw IllegalArgumentException("ERROR: No 2 of the given entries add up to the target number")
+        return result
     }
 }
