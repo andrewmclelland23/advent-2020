@@ -1,3 +1,6 @@
+package expenses
+
+import expenses.SumFinder
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.data.forAll
 import io.kotest.data.row
@@ -6,7 +9,7 @@ import io.kotest.matchers.shouldBe
 
 class SumFinderTest : FreeSpec() {
     init {
-        "SumFinder" - {
+        "expenses.SumFinder" - {
             "findRecursively should" - {
                 "Find a the n number of entries that sum up to the given input" {
                     forAll(

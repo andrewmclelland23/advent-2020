@@ -1,3 +1,7 @@
+package expenses
+
+import expenses.ExpenseReport
+import expenses.SumFinder
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.shouldBe
 import io.mockk.every
@@ -6,7 +10,7 @@ import io.mockk.verify
 
 class ExpenseReportTest : FreeSpec() {
     init {
-        "ExpenseReport" - {
+        "expenses.ExpenseReport" - {
             "fixReport method should" - {
                 "Find the two entries that sum to input and then multiply those two numbers together" {
                     val input = "5\n5\n20"

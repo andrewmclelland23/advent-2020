@@ -1,3 +1,5 @@
+package expenses
+
 class SumFinder {
 
     fun find(targetNumber: Int, entries: List<Int>, depth: Int): List<Int> {

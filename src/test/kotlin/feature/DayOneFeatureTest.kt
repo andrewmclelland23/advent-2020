@@ -1,7 +1,7 @@
 package feature
 
-import ExpenseReport
-import SumFinder
+import expenses.ExpenseReport
+import expenses.SumFinder
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.shouldBe
 
