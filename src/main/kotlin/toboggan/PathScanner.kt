@@ -1,4 +1,4 @@
-package TobogganRouting
+package toboggan
 
 class PathScanner(mapString: String) {
     val mapSegment = mapString.split("\n")

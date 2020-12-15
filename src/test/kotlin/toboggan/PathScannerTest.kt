@@ -1,4 +1,4 @@
-package TobogganRouting
+package toboggan
 
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.shouldBe
